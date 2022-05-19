@@ -2,7 +2,7 @@
 
 Allows simple postcode lookups on https://postcoder.com
 
-###Install
+### Install
 
 ```
 composer install barrydevt/postcoder
