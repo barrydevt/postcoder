@@ -2,7 +2,7 @@
 
 Allows simple postcode lookups on https://postcoder.com
 
-###Install
+### Install
 
 ```
 composer install barrydevt/postcoder
@@ -26,26 +26,6 @@ POSTCODER_API_KEY=PCW45-12345-12345-1234X
 (This is the sandbox key)
 
 ## Useage
-
-Inject the class into the constructor of the clasee you wish to use it:
-
-```
-public function (\Barrydevt\Postcoder\Client $postcoderClient) 
-{
-    $this->postcoderClient = $postcoderClient;
-}
-```
-
-in, and then call like so:
-
-```
-$result = $this->postcoderClient
-             ->setCountryCode('GB')
-             ->searchFor('NR14 7PZ')
-             ->get();
-```
-
-Or you can use the Facade:
 
 ```
 use Barrydevt\Postcoder\Facades\AddressLookup;
