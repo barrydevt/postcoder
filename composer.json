@@ -19,12 +19,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Barrydevt\\Postcoder\\": "src"
+      "Barrydevt\\Postcoder\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Barrydevt\\Postcoder\\": "src"
+      "Barrydevt\\Postcoder\\": "src/"
     }
   }
 }
