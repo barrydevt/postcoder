@@ -45,4 +45,12 @@ $result = $this->postcoderClient
              ->get();
 ```
 
+Or you can use the Facade:
+
+```
+use Barrydevt\Postcoder\Facades\AddressLookup;
+
+$possibleAddresses = AddressLookup::searchFor($this->postcode)->get();
+
+```
 
