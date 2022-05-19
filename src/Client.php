@@ -3,9 +3,16 @@
 namespace Barrydevt\Postcoder;
 
 use Barrydevt\Postcoder\Exceptions\AuthenticationException;
+use Barrydevt\Postcoder\Http\Curl;
 
+/**
+ * Class Client
+ * @package Barrydevt\Postcoder
+ */
 class Client implements AddressServiceClientInterface
 {
+    const API_ENDPOINT = 'https://ws.postcoder.com/pcw/';
+
     /**
      * @var string
      */
@@ -14,7 +21,7 @@ class Client implements AddressServiceClientInterface
     /**
      * @var string
      */
-    protected $countryCode;
+    protected $countryCode = 'GB';
 
     /**
      * @var string
@@ -29,9 +36,9 @@ class Client implements AddressServiceClientInterface
     /**
      * Client constructor.
      */
-    public function __construct()
+    public function __construct(Curl $httpAdapter)
     {
-        $this->httpClient = new \Barrydevt\Postcoder\Http\Curl();
+        $this->httpClient = $httpAdapter;
         $this->loadApiKey();
     }
 
@@ -82,12 +89,22 @@ class Client implements AddressServiceClientInterface
         return $this->clientRequest();
     }
 
+    protected function getApiRequestUrl()
+    {
+        return implode('/',[
+            self::API_ENDPOINT,
+            $this->apiKey,
+            $this->apiResource,
+            $this->countryCode,
+            urlencode($this->term)
+        ]);
+    }
+
     /**
      * @return array
      */
     protected function clientRequest(): array
     {
-        $requestUrl = "https://ws.postcoder.com/pcw/$this->apiKey/address/$this->countryCode/" . urlencode($this->term);
-        return $this->httpClient->call($requestUrl);
+        return $this->httpClient->call($this->getApiRequestUrl());
     }
 }

@@ -9,11 +9,6 @@ namespace Barrydevt\Postcoder\Http;
 class AbstractHttp
 {
     /**
-     * @var bool
-     */
-    protected $responseError = null;
-
-    /**
      * @var array
      */
     protected $response;
@@ -26,14 +21,4 @@ class AbstractHttp
         return $this->response;
     }
 
-    /**
-     * @param $result
-     * @return $this
-     */
-    public function processResponse($result)
-    {
-        $this->response = json_decode($result);
-        $this->responseError = false;
-        return $this;
-    }
 }
